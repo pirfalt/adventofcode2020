@@ -5,7 +5,7 @@
   "scripts": {
     "watch": "shadow-cljs watch app",
     "watch-test": "shadow-cljs watch test",
-    "start": "node build/main.js",
+    "start": "node build.js",
     "start-test": "node build/tests.js || true"
   },
   "devDependencies": {
