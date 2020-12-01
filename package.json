@@ -1,0 +1,15 @@
+{
+  "name": "first",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "watch": "shadow-cljs watch app",
+    "watch-test": "shadow-cljs watch test",
+    "start": "node build/main.js",
+    "start-test": "node build/tests.js || true"
+  },
+  "devDependencies": {
+    "shadow-cljs": "2.11.5"
+  },
+  "dependencies": {}
+}
