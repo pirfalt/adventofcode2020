@@ -1,34 +1,41 @@
 (ns app.day01p1
-  (:require [app.reader :refer [read-file]])
-  (:require [clojure.string :refer [split-lines]]))
+  (:require [app.reader :as reader])
+  (:require [clojure.string :as s]))
 
-;; (def data "1721\n979\n366\n299\n675\n1456")
-
-(defn parse-int [str]
-  (js/parseInt str))
-
-(defn parse []
-  (let [input (read-file "./data/01.txt")
-        str-vector (split-lines input)
-        str-list (list* str-vector)
-        numbers (map parse-int str-list)]
-    numbers))
-
-(defn create-sum [n, m]
-  {:n n :m m :sum (+ n m)})
-
-(defn add-to-all [numbers n]
-  (map #(create-sum n %) numbers))
+(def example (s/split-lines "1721
+979
+366
+299
+675
+1456"))
 
 
-(defn find-numbers [numbers]
-  (->> numbers
-       (map #(add-to-all numbers %))
-       (reduce #(concat %1 %2))
-       (filter #(= 2020 (:sum %)))
+(defn lines [filename]
+  (let [file (app.reader/read-file filename)
+        lines (s/split-lines file)]
+    lines))
+
+(defn numbers [lines]
+  (map #(js/parseInt %1) lines))
+
+(def input (lines "./data/01.txt"))
+
+(defn one []
+  (->> (for [a (numbers input)
+             b (numbers input)
+             :when (= 2020 (+ a b))]
+         (* a b))
+       (first)))
+
+
+(defn two []
+  (->> (for [a (numbers input)
+             b (numbers input)
+             c (numbers input)
+             :when (= 2020 (+ a b c))]
+         (* a b c))
        (first)))
 
 (defn run []
-  (let [numbers (parse)
-        result (find-numbers numbers)]
-    (println (* (:n result) (:m result)))))
+  (print (one))
+  (print (two)))
