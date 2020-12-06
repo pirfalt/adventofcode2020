@@ -1,7 +1,6 @@
 (ns app.day05
   (:require [app.reader :as reader])
   (:require [clojure.string :as s])
-  (:require [clojure.data :as d])
   (:require [clojure.set :as set]))
 
 ;; BFFFBBFRRR: row 70, column 7, seat ID 567.
