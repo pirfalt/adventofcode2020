@@ -1,4 +1,4 @@
-(ns app.day0
+(ns app.day00
   (:require [app.reader :as reader])
   (:require [clojure.string :as s]))
 
